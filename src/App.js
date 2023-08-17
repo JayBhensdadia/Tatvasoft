@@ -12,11 +12,6 @@ function App() {
   return (
 
     <div>
-      
-      
-      
-
-
       <BrowserRouter>
 
         <NavLink style={{marginRight: 10}} to="/">Home</NavLink>
