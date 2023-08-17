@@ -1,33 +1,41 @@
-import './App.css';
-import BooksList from './components/BooksList';
-import HomePage from './components/HomePage';
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
-import PageNotFound from './components/PageNotFound';
+import React from "react";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { theme } from "./utils/theme";
+import "./assets/css/style.css";
+import { BrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Header from "./components/header/index";
+import Footer from "./components/footer/index";
+import MainNavigation from "./components/MainNavigation";
+import { AuthWrapper } from "./context/auth";
+import loader from "../src/assets/images/loader.gif";
+import { CartWrapper } from "./context/cart";
 
-
-function App() {
-
-  const name = "Jay";
-
+const App = () => {
   return (
-
-    <div>
-      <BrowserRouter>
-
-        <NavLink style={{marginRight: 10}} to="/">Home</NavLink>
-        <NavLink to="/books">Books</NavLink>
-
-        <Routes>
-          <Route path='/' element={<HomePage userName={name} />}></Route>
-          <Route path='/books' element={<BooksList />}></Route>
-          <Route path='*' element={<PageNotFound />}></Route>
-        </Routes>
-      </BrowserRouter>
-
-
-
-    </div>
+    <ThemeProvider theme={theme}>
+      <React.Suspense fallback={<></>}>
+        <BrowserRouter>
+          <AuthWrapper>
+            <CartWrapper>
+              <div className="loader-wrapper">
+                <img src={loader} alt="loader" />
+              </div>
+              <div className="wrapper">
+                <Header />
+                <main>
+                  <MainNavigation />
+                </main>
+                <Footer />
+              </div>
+              <ToastContainer />
+            </CartWrapper>
+          </AuthWrapper>
+        </BrowserRouter>
+      </React.Suspense>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
