@@ -12,7 +12,7 @@ click on the below link
 
 ## Demo
 
-![](./ss/demo.gif)
+![](./ss/demo2.gif)
 
 
 ## Installation
